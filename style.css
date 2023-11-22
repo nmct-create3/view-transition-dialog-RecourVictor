@@ -13,6 +13,48 @@
     box-sizing: border-box;
 }
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-from-bottom{
+    from{
+        transform: translateY(30px);
+    }
+}
+
+@keyframes slide-to-bottom{
+    to{
+        transform: translateY(30px);
+    }
+}
+
+::view-transition-old(root){
+    animation: 90ms ease-in both fade-out,
+    300ms ease-in-out both slide-to-bottom;
+}
+
+::view-transition-new(root){
+    animation: 210ms ease-out 90ms both fade-in,
+    300ms ease-in-out both slide-from-bottom;
+}
+
+
+body{
+    min-height: 100Vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--pink-2);
+}
+
 body,
 h1,
 h2,
@@ -22,10 +64,59 @@ h5,
 h6,
 p,
 ol,
-ul {
+ul,
+button {
     margin: 0;
     padding: 0;
     font-size: 100%;
+    font-family: var(--font-sans);
+}
+
+h1{
+    font-size: var(--font-size-6);
+    color: var(--pink-8);
+    margin-bottom: var(--size-3);
+}
+
+button{
+    all: initial;
+    padding: var(--size-3);
+    border: 3px solid var(--pink-8);
+    border-radius: 250px;
+    color: var(--pink-8);
+    transition: 0.3s;
+    &:hover{
+        background-color: var(--pink-8);
+        color: var(--pink-2);
+    }
+}
+
+dialog{
+    background-color: var(--pink-2);
+    border: solid 2px var(--pink-8);
+    border-radius: 10px;
+    min-width: 50vw;
+    max-width: 25rem;
+    padding: 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Hier kun je de schaduw aanpassen */
+    &::backdrop{
+        background-color:rgba(255, 255, 255, 0.1);
+    }
+}
+
+.dialog__header{
+    /* border-bottom: solid 2px var(--pink-8); */
+    padding: var(--size-3);
+    background-color: var(--pink-3);
+    color: var(--pink-8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dialog__body{
+    padding: var(--size-3);
 }
 
 img,
